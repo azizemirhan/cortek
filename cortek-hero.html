@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cortek Yeni Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== SHARED TOKENS (site geneliyle ayni) ===== */
+:root{
+  --white:#ffffff;--surface:#F1F5F9;--surface-2:#E9EEF5;
+  --ink:#1E293B;--ink-2:#334155;--muted:#64748B;
+  --blue:#2860d9;--blue-700:#1e4fb8;--blue-050:#eaf0fd;
+  --accent:#FF5A00;--accent-700:#e04e00;
+  --line:rgba(30,41,59,.10);--line-2:rgba(30,41,59,.06);
+  --radius:16px;--maxw:1240px;
+  --font-display:'Sora',system-ui,sans-serif;--font-body:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-body);color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.55}
+
+/* ===================== NEW CENTERED HERO ===================== */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:#f8fafc;
+  min-height:min(90vh, 850px);
+}
+.hero__slider{
+  width:100%;
+  height:100%;
+}
+.hero__slide{
+  position:absolute;
+  inset:0;
+  padding:100px 24px 60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.8s ease, visibility 0.8s ease;
+}
+.hero__slide.active{
+  opacity:1;
+  visibility:visible;
+  z-index:5;
+}
+.hero__arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:20;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#fff;
+  border:1px solid var(--line-2);
+  color:var(--accent);
+  display:grid;
+  place-items:center;
+  box-shadow:0 8px 20px -8px rgba(30,41,59,0.15);
+  transition:background .25s, color .25s, transform .25s;
+}
+.hero__arrow:hover{
+  background:var(--accent);
+  color:#fff;
+  transform:translateY(-50%) scale(1.06);
+}
+.hero__arrow svg{
+  width:22px;
+  height:22px;
+}
+.hero__arrow--prev{
+  left:24px;
+}
+.hero__arrow--next{
+  right:24px;
+}
+
+/* Watermark Background Text */
+.hero__watermark{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  font-family:var(--font-display);
+  font-size:clamp(100px, 18vw, 260px);
+  font-weight:900;
+  color:var(--ink);
+  opacity:0.03;
+  white-space:nowrap;
+  z-index:1;
+  pointer-events:none;
+  user-select:none;
+  letter-spacing:-0.03em;
+}
+
+.hero__inner{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:var(--maxw);
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  align-items:center;
+  gap: 40px;
+}
+
+.hero__center-wrap{
+  position:absolute;
+  bottom:-25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  height: 85%;
+  max-height: 600px;
+  pointer-events:none;
+}
+.hero__center-img{
+  height: 100%;
+  object-fit:contain;
+  object-position: bottom;
+  filter: drop-shadow(0 30px 40px rgba(30,41,59,0.15));
+  display:block;
+  opacity: 1;
+}
+.hero__center-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: transparent;
+  pointer-events:none;
+}
+
+.hero__left{
+  position:relative;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  transform: translateY(-80px);
+}
+
+.hero__left-heading{
+  font-family:var(--font-display);
+  font-size:clamp(36px, 4.5vw, 64px);
+  font-weight:800;
+  color:var(--ink);
+  line-height:1.1;
+  text-transform:uppercase;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom: 50px;
+}
+
+.hero__left-heading span:nth-child(2) {
+  margin-left: 40px;
+}
+
+.hero__left-heading span:nth-child(3) {
+  margin-left: 80px;
+}
+
+.hero__left-desc{
+  max-width: 340px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+}
+
+.hero__right{
+  position:relative;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  text-align:right;
+  gap: 50px;
+  transform: translateY(-80px);
+}
+
+.hero__right-top-desc{
+  max-width: 280px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+.hero__right-specs{
+  display:flex;
+  gap: 40px;
+}
+
+.hero__right-item{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  text-align:left;
+}
+.hero__right-item span{
+  color: #94a3b8;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  font-weight:600;
+}
+.hero__right-item strong{
+  color:var(--ink);
+  font-size:16px;
+  font-weight:700;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hero {
+    display: block;
+    min-height: auto;
+    height: auto;
+    padding: 0;
+  }
+  .hero__slider {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .hero__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 24px 0;
+    gap: 0;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  .hero__slide.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+  }
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+    position: relative;
+    width: 100%;
+    order: 1;
+  }
+  .hero__left {
+    transform: none;
+  }
+  .hero__left-heading {
+    margin-bottom: 20px;
+    word-break: break-word;
+    font-size: clamp(32px, 10vw, 40px);
+  }
+  .hero__left, .hero__right {
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .hero__right {
+    display: none;
+  }
+  .hero__left-heading span:nth-child(2),
+  .hero__left-heading span:nth-child(3) {
+    margin-left: 0;
+  }
+  .hero__center-wrap {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    height: 320px;
+    max-height: none;
+    margin-top: 0;
+    order: 2;
+  }
+  .hero__center-img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+    transform: none;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .hero__right-specs {
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero__right-item {
+    text-align: center;
+  }
+  .hero__slide[data-index="0"] .hero__center-img {
+    max-width: none;
+    width: 110%;
+    margin-left: -5%;
+  }
+  .hero__arrow {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="hero" id="hero">
+  <div class="hero__watermark">CORTEK</div>
+  
+  <div class="hero__slider">
+    <!-- Slide 1: Akıllı Ev -->
+    <div class="hero__slide active" data-index="0">
+      <div class="hero__center-wrap">
+        <img src="Adsız tasarım (1).png" alt="Cortek Akıllı Ev" class="hero__center-img" />
+      </div>
+      
+      <div class="container hero__inner">
+        <div class="hero__left">
+          <div class="hero__left-heading">
+            <span>Cortek</span>
+            <span>Akıllı Ev</span>
+            <span>Sistemleri</span>
+          </div>
+          <div class="hero__left-desc">
+            Modern mimari projeleriniz için sessiz, güvenli ve uzun ömürlü akıllı geçiş sistemleri. Cortek kalitesiyle tanışın.
+          </div>
+        </div>
+        
+        <div class="hero__right">
+          <div class="hero__right-top-desc">
+            Otomatik kapı ve bariyer sistemleri "yardımcı ekipman" olmaktan çıkıp "akıllı güvenlik" standardına dönüşüyor.
+            <br><br><strong>Yeni nesil geçiş çözümleri</strong>
+          </div>
+
+          <div class="hero__right-specs">
+            <div class="hero__right-item">
+              <span>Özellik</span>
+              <strong>Sessiz Çalışma</strong>
+              <span style="margin-top:10px;">Hız</span>
+              <strong>Saniyede 1m</strong>
+            </div>
+            <div class="hero__right-item">
+              <span>Güvenlik</span>
+              <strong>Fotosel & Radar</strong>
+              <span style="margin-top:10px;">Garanti</span>
+              <strong>2 Yıl Tam Kapsam</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Güvenlik Sistemleri -->
+    <div class="hero__slide" data-index="1">
+      <div class="hero__center-wrap">
+        <img src="herokamera.png" alt="Cortek Güvenlik Sistemleri" class="hero__center-img" />
+      </div>
+      
+      <div class="container hero__inner">
+        <div class="hero__left">
+          <div class="hero__left-heading">
+            <span>Cortek</span>
+            <span>Güvenlik</span>
+            <span>Sistemleri</span>
+          </div>
+          <div class="hero__left-desc">
+            Eviniz ve iş yeriniz için 7/24 kesintisiz koruma. Akıllı kamera, alarm ve geçiş kontrol sistemleriyle her an güvende kalın.
+          </div>
+        </div>
+        
+        <div class="hero__right">
+          <div class="hero__right-top-desc">
+            Kamera ve alarm sistemleri sadece izlemekle kalmaz, yapay zeka desteğiyle olası tehditleri anında tespit edip haber verir.
+            <br><br><strong>Yeni nesil güvenlik çözümleri</strong>
+          </div>
+
+          <div class="hero__right-specs">
+            <div class="hero__right-item">
+              <span>Özellik</span>
+              <strong>7/24 İzleme</strong>
+              <span style="margin-top:10px;">Bağlantı</span>
+              <strong>Anlık Bildirim</strong>
+            </div>
+            <div class="hero__right-item">
+              <span>Güvenlik</span>
+              <strong>Yapay Zeka Analiz</strong>
+              <span style="margin-top:10px;">Garanti</span>
+              <strong>2 Yıl Tam Kapsam</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="hero__arrow hero__arrow--prev" aria-label="Önceki slayt">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="hero__arrow hero__arrow--next" aria-label="Sonraki slayt">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.hero__slide');
+      const prevBtn = document.querySelector('.hero__arrow--prev');
+      const nextBtn = document.querySelector('.hero__arrow--next');
+      let currentSlide = 0;
+      let slideInterval;
+
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+        currentSlide = index;
+      }
+
+      function nextSlide() {
+        let next = (currentSlide + 1) % slides.length;
+        showSlide(next);
+      }
+
+      function prevSlide() {
+        let prev = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prev);
+      }
+
+      function startInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+      }
+
+      prevBtn.addEventListener('click', function() {
+        prevSlide();
+        startInterval();
+      });
+
+      nextBtn.addEventListener('click', function() {
+        nextSlide();
+        startInterval();
+      });
+
+      startInterval();
+    });
+  </script>
+</section>
+
+</body>
+</html>

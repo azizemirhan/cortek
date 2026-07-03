@@ -1,0 +1,193 @@
+<!-- DEMO PAGE - cortek-demo.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Demo Sayfası | Cortek</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;--surface:#F1F5F9;--surface-2:#E9EEF5;
+  --ink:#1E293B;--ink-2:#334155;--muted:#64748B;
+  --blue:#2860d9;--blue-700:#1e4fb8;--blue-050:#eaf0fd;
+  --accent:#FF5A00;--accent-700:#e04e00;
+  --line:rgba(30,41,59,.10);--line-2:rgba(30,41,59,.06);
+  --radius:16px;--maxw:1240px;
+  --font-display:'Sora',system-ui,sans-serif;--font-body:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--surface);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:24px;
+  -webkit-font-smoothing:antialiased;
+}
+
+.demo-card{
+  background:var(--white);
+  border-radius:24px;
+  box-shadow:0 20px 60px -20px rgba(30,41,59,0.15);
+  padding:56px 48px;
+  max-width:580px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.demo-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:5px;
+  background:linear-gradient(90deg, var(--accent), var(--blue));
+}
+
+.demo-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--accent);
+  color:#fff;
+  font-family:var(--font-display);
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  padding:8px 20px;
+  border-radius:100px;
+  margin-bottom:32px;
+}
+
+.demo-badge svg{
+  width:16px;
+  height:16px;
+}
+
+.demo-icon{
+  width:72px;
+  height:72px;
+  margin:0 auto 28px;
+  background:var(--surface);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--accent);
+}
+
+.demo-icon svg{
+  width:36px;
+  height:36px;
+}
+
+.demo-title{
+  font-family:var(--font-display);
+  font-size:clamp(24px, 5vw, 32px);
+  font-weight:800;
+  color:var(--ink);
+  line-height:1.2;
+  margin-bottom:16px;
+}
+
+.demo-desc{
+  font-size:16px;
+  line-height:1.7;
+  color:var(--muted);
+  margin-bottom:36px;
+  max-width:420px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.demo-divider{
+  height:1px;
+  background:var(--line);
+  margin:0 auto 28px;
+  width:80%;
+}
+
+.demo-note{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:32px;
+}
+
+.demo-note strong{
+  color:var(--ink);
+}
+
+.demo-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--ink);
+  color:#fff;
+  font-family:var(--font-display);
+  font-size:15px;
+  font-weight:600;
+  padding:14px 32px;
+  border-radius:12px;
+  text-decoration:none;
+  transition:background 0.25s, transform 0.25s;
+}
+
+.demo-btn:hover{
+  background:var(--accent);
+  transform:translateY(-2px);
+}
+
+.demo-btn svg{
+  width:18px;
+  height:18px;
+}
+
+@media(max-width:600px){
+  .demo-card{
+    padding:40px 24px;
+    border-radius:20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-card">
+  <span class="demo-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    Demo Versiyon
+  </span>
+
+  <div class="demo-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+  </div>
+
+  <h1 class="demo-title">Bu Bir Demo Sayfasıdır</h1>
+
+  <p class="demo-desc">
+    Bu sayfa henüz aktif değildir. Anlaşma durumunda kalan sayfalar eksiksiz tamamlanacaktır.
+  </p>
+
+  <div class="demo-divider"></div>
+
+  <p class="demo-note">
+    Tüm sayfa tasarımları, içerikler ve fonksiyonlar <strong>anlaşma sonrasında</strong> profesyonel olarak hazırlanacak ve canlıya alınacaktır.
+  </p>
+
+  <a href="index.html" class="demo-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+    Ana Sayfaya Dön
+  </a>
+</div>
+
+</body>
+</html>

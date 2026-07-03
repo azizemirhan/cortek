@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cortek · Hizmetlerimiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;--surface:#F1F5F9;--surface-2:#E9EEF5;
+  --ink:#1E293B;--ink-2:#334155;--muted:#64748B;
+  --blue:#2860d9;--blue-700:#1e4fb8;--blue-050:#eaf0fd;
+  --accent:#FF5A00;--accent-700:#e04e00;
+  --line:rgba(30,41,59,.10);--line-2:rgba(30,41,59,.06);
+  --maxw:1240px;
+  --font-display:'Sora',system-ui,sans-serif;--font-body:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-body);color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.55}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+ul{list-style:none;margin:0;padding:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
+.container{width:100%;max-width:var(--maxw);margin-left: auto; margin-right: auto;padding-inline:24px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;padding:14px 22px;border-radius:12px;line-height:1;transition:transform .18s,background .18s,box-shadow .18s,color .18s}
+.btn svg{width:18px;height:18px}
+.btn--accent{background:var(--accent);color:#fff;box-shadow:0 12px 24px -10px rgba(255,90,0,.6)}
+.btn--accent:hover{background:var(--accent-700);transform:translateY(-1px)}
+.btn--ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn--ghost:hover{background:var(--surface);transform:translateY(-1px)}
+.btn--wa{background:#25D366;color:#0b2b16}
+.btn--wa:hover{filter:brightness(.97);transform:translateY(-1px)}
+.btn--light{background:#fff;color:var(--ink)}
+.btn--light:hover{transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.sec{padding:clamp(60px,7vw,96px) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--blue-050);padding:8px 14px;border-radius:30px}
+.eyebrow svg{width:16px;height:16px}
+.eyebrow--accent{color:var(--accent);background:#fff1e8}
+.eyebrow--gate{color:var(--ink);background:var(--surface-2)}
+.sec-title{font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;line-height:1.1;font-size:clamp(28px,3.8vw,44px);margin:0;color:var(--ink)}
+.sec-title em{font-style:normal;color:var(--blue)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* =========================================================
+   1) SAYFA BAŞLIĞI
+========================================================= */
+.pagehead{position:relative;overflow:hidden;padding:clamp(48px,6vw,76px) 0 clamp(40px,5vw,56px);
+  background:radial-gradient(60% 60% at 90% 0%,rgba(40,96,217,.10),transparent 60%),
+             radial-gradient(50% 50% at 100% 80%,rgba(255,90,0,.07),transparent 60%),
+             linear-gradient(180deg,#fff,var(--surface));}
+.pagehead::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(30,41,59,.05) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(180deg,#000,transparent 85%);pointer-events:none}
+.pagehead__inner{position:relative;z-index:2;max-width:760px}
+.crumb{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:20px;font-weight:500}
+.crumb a:hover{color:var(--blue)}
+.crumb svg{width:15px;height:15px;color:var(--line)}
+.crumb b{color:var(--ink)}
+.pagehead h1{font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;line-height:1.05;font-size:clamp(34px,5.2vw,56px);margin:16px 0 18px;color:var(--ink)}
+.pagehead h1 em{font-style:normal;color:var(--blue)}
+.pagehead p{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 28px}
+.jump{display:flex;gap:12px;flex-wrap:wrap}
+.jump a{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-family:var(--font-display);font-weight:600;font-size:14.5px;color:var(--ink);transition:transform .2s,box-shadow .2s,border-color .2s}
+.jump a:hover{transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(30,41,59,.4);border-color:transparent}
+.jump a .d{width:30px;height:30px;border-radius:9px;display:grid;place-items:center}
+.jump a .d svg{width:17px;height:17px}
+.jump a:nth-child(1) .d{background:var(--blue-050);color:var(--blue)}
+.jump a:nth-child(2) .d{background:#fff1e8;color:var(--accent)}
+.jump a:nth-child(3) .d{background:var(--surface-2);color:var(--ink)}
+
+/* =========================================================
+   2) DETAYLI HİZMETLER
+========================================================= */
+.detail{background:#fff}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:clamp(24px,3vw,36px) 0;border-top:1px solid var(--line-2)}
+.detail .srow:first-child{border-top:0;padding-top:0}
+.srow:nth-child(even) .srow__media{order:2}
+.srow__content .eyebrow{margin-bottom:18px}
+.srow__content h2{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;line-height:1.12;font-size:clamp(24px,3vw,34px);margin:0 0 14px;color:var(--ink)}
+.srow__content>p{font-size:16.5px;color:var(--muted);margin:0 0 24px;max-width:48ch}
+.srow__feats{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin-bottom:28px}
+.srow__feats li{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--ink-2)}
+.srow__feats li .ck{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto;background:var(--blue-050);color:var(--blue)}
+.srow--sec .srow__feats li .ck{background:#fff1e8;color:var(--accent)}
+.srow--gate .srow__feats li .ck{background:var(--surface-2);color:var(--ink)}
+.srow__feats li .ck svg{width:14px;height:14px}
+.srow__cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* media panels */
+.srow__media{position:relative}
+.panel{border-radius:24px;overflow:hidden;position:relative;aspect-ratio:5/4.4;box-shadow:0 40px 80px -34px rgba(30,41,59,.45)}
+/* smart-home panel */
+.panel--home{background:linear-gradient(155deg,#eaf1fc,#d3e1fb 60%,#c2d6ff);display:grid;place-items:center;padding:30px}
+.mini{width:100%;max-width:320px;background:#fff;border-radius:18px;padding:18px;box-shadow:0 26px 50px -22px rgba(30,58,138,.4)}
+.mini__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.mini__top b{font-family:var(--font-display);font-size:15px}
+.mini__top span{font-size:11.5px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.mini__top span::before{content:"";width:7px;height:7px;border-radius:50%;background:#22c55e}
+.mrow{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:12px;background:var(--surface);margin-bottom:9px}
+.mrow .l{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.mrow .l .i{width:30px;height:30px;border-radius:8px;background:#fff;color:var(--blue);display:grid;place-items:center;box-shadow:var(--line) 0 0 0 1px}
+.mrow .l .i svg{width:16px;height:16px}
+.mrow .r{font-size:12.5px;font-weight:700;color:var(--blue)}
+.sw{width:38px;height:22px;border-radius:20px;background:var(--blue);position:relative}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+/* security panel */
+.panel--sec{background:#0d1424}
+.scam{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 0%,#1c2740,#0a1020 70%);overflow:hidden}
+.scam__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:42px 42px}
+.scam__scan{position:absolute;left:0;right:0;height:110px;top:-110px;background:linear-gradient(180deg,transparent,rgba(40,96,217,.28),transparent);animation:scan 3.6s linear infinite}
+@keyframes scan{to{top:100%}}
+.scam__live{position:absolute;top:18px;left:18px;display:inline-flex;align-items:center;gap:7px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.5);color:#fca5a5;padding:6px 11px;border-radius:8px;font-family:var(--font-display);font-weight:600;font-size:11.5px;letter-spacing:.05em}
+.scam__live::before{content:"";width:8px;height:8px;border-radius:50%;background:#ef4444;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.35}}
+.scam__box{position:absolute;left:32%;top:36%;width:110px;height:140px;border:2px solid var(--accent);border-radius:6px;box-shadow:0 0 0 4px rgba(255,90,0,.12)}
+.scam__box span{position:absolute;top:-22px;left:-2px;background:var(--accent);color:#fff;font-family:var(--font-display);font-size:10px;font-weight:700;padding:3px 7px;border-radius:5px}
+.scam__toast{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:11px;background:rgba(15,23,42,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);padding:11px 13px;border-radius:12px}
+.scam__toast .i{width:32px;height:32px;border-radius:9px;background:rgba(255,90,0,.18);color:var(--accent);display:grid;place-items:center;flex:0 0 auto}
+.scam__toast .i svg{width:17px;height:17px}
+.scam__toast b{display:block;color:#fff;font-family:var(--font-display);font-size:12.5px}
+.scam__toast small{color:#94a3b8;font-size:11px}
+/* gate panel */
+.panel--gate img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.panel--gate::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,23,42,.5))}
+.panel__tag{position:absolute;z-index:3;top:18px;left:18px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:12px;padding:7px 12px;border-radius:30px;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+.panel__tag .live{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 2s infinite}
+/* floating chip on panels */
+.panel-chip{position:absolute;z-index:5;bottom:-14px;right:18px;display:inline-flex;align-items:center;gap:10px;background:#fff;padding:12px 15px;border-radius:14px;box-shadow:0 20px 44px -18px rgba(30,41,59,.5),0 0 0 1px var(--line-2);font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--ink)}
+.panel-chip svg{width:20px;height:20px;color:var(--accent)}
+.panel-chip small{display:block;font-family:var(--font-body);font-weight:500;font-size:11px;color:var(--muted)}
+
+/* =========================================================
+   3) UYGULAMA ALANLARI
+========================================================= */
+.areas{background:var(--surface)}
+.areas__head{max-width:720px;margin:0 auto clamp(38px,5vw,54px);text-align:center}
+.areas__head .eyebrow{margin-bottom:18px}
+.areas__head h2{margin-bottom:14px}
+.areas__head p{font-size:17px;color:var(--muted);margin:0}
+.areas__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:clamp(40px,5vw,56px)}
+.area{background:#fff;border:1px solid var(--line-2);border-radius:18px;padding:26px;display:flex;align-items:flex-start;gap:16px;transition:transform .26s,box-shadow .26s,border-color .26s}
+.area:hover{transform:translateY(-5px);box-shadow:0 30px 54px -30px rgba(30,41,59,.4);border-color:transparent}
+.area__ic{width:52px;height:52px;border-radius:14px;background:var(--blue-050);color:var(--blue);display:grid;place-items:center;flex:0 0 auto}
+.area__ic svg{width:26px;height:26px}
+.area:nth-child(3n+2) .area__ic{background:#fff1e8;color:var(--accent)}
+.area:nth-child(3n) .area__ic{background:var(--surface-2);color:var(--ink)}
+.area h3{font-family:var(--font-display);font-weight:700;font-size:17px;margin:2px 0 6px;color:var(--ink)}
+.area p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
+
+.areas__cta{position:relative;overflow:hidden;background:var(--ink);border-radius:24px;padding:clamp(34px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.areas__cta::before{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(40,96,217,.4),transparent 65%)}
+.areas__cta::after{content:"";position:absolute;left:-70px;bottom:-120px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,90,0,.28),transparent 65%)}
+.areas__cta>*{position:relative;z-index:2}
+.areas__cta h3{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2.6vw,28px);color:#fff;margin:0 0 8px}
+.areas__cta p{margin:0;color:#94a3b8;font-size:15.5px;max-width:46ch}
+.areas__cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width:900px){
+  .srow{grid-template-columns:1fr;gap:32px;padding:20px 0}
+  .srow:nth-child(even) .srow__media{order:0}
+  .panel{aspect-ratio:16/11;max-width:520px;margin-left: auto; margin-right: auto; width:100%}
+  .areas__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .container{padding-inline:18px}
+  .srow__feats{grid-template-columns:1fr}
+  .areas__grid{grid-template-columns:1fr}
+  .jump{width:100%}
+  .jump a{flex:1;justify-content:center}
+  .areas__cta{flex-direction:column;align-items:flex-start}
+  .areas__cta-btns .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 1) SAYFA BAŞLIĞI ================= -->
+<section class="pagehead">
+  <div class="container">
+    <div class="pagehead__inner reveal">
+      <nav class="crumb" aria-label="breadcrumb">
+        <a href="#">Ana Sayfa</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 6 6 6-6 6"/></svg>
+        <b>Hizmetlerimiz</b>
+      </nav>
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg> Hizmetlerimiz</span>
+      <h1>Akıllı, güvenli ve <em>otomatik</em> yaşam çözümleri</h1>
+      <p>Satıştan projelendirmeye, montajdan teknik desteğe kadar üç ana alanda uçtan uca hizmet veriyoruz. İhtiyacınıza uygun çözümü keşfedin.</p>
+      <div class="jump">
+        <a href="#akilli-ev"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/></svg></span> Akıllı Ev</a>
+        <a href="#guvenlik"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6z"/></svg></span> Güvenlik</a>
+        <a href="#otomatik-kapi"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 8V5h18v3M7 8v12M11 8v12M15 8v12"/></svg></span> Otomatik Kapı</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2) DETAYLI HİZMETLER ================= -->
+<section class="sec detail">
+  <div class="container">
+
+    <!-- Akıllı Ev -->
+    <div class="srow srow--home reveal" id="akilli-ev">
+      <div class="srow__media">
+        <img src="3.png" alt="Akıllı Ev" style="width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to right, #fff 0%, rgba(255,255,255,0.7) 15%, transparent 45%);pointer-events:none;"></div>
+      </div>
+      <div class="srow__content">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/></svg> Akıllı Ev Sistemleri</span>
+        <h2>Evinizi parmaklarınızın ucuna taşıyın</h2>
+        <p>Aydınlatmadan iklimlendirmeye, perdelerden enerji takibine kadar tüm sistemleri tek uygulamadan yönetin. Konfor ve tasarruf bir arada.</p>
+        <ul class="srow__feats">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Akıllı Aydınlatma</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Perde &amp; Panjur</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> İklimlendirme</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Sesli Asistan</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Enerji Takibi</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Senaryo &amp; Otomasyon</li>
+        </ul>
+        <div class="srow__cta">
+          <a href="#" class="btn btn--accent">Teklif Al <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="https://wa.me/908500000000" class="btn btn--ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.8 4.9-1.3A9.9 9.9 0 1 0 12.05 2Zm0 18a8 8 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12.05 20Z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Güvenlik -->
+    <div class="srow srow--sec reveal" id="guvenlik">
+      <div class="srow__media">
+        <img src="2.png" alt="Güvenlik Sistemleri" style="width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to left, #fff 0%, rgba(255,255,255,0.7) 15%, transparent 45%);pointer-events:none;"></div>
+      </div>
+      <div class="srow__content">
+        <span class="eyebrow eyebrow--accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6z"/></svg> Güvenlik Sistemleri</span>
+        <h2>Kesintisiz koruma, her an gözünüzün önünde</h2>
+        <p>Kamera, alarm ve geçiş kontrol sistemleriyle ev ve iş yerinizi 7/24 izleyin. Anlık bildirim ve uzaktan erişimle her yerden kontrol sizde.</p>
+        <ul class="srow__feats">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Kameralar (CCTV)</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Alarm Sistemleri</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Görüntülü Diafon</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Geçiş Kontrol</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Yangın &amp; Duman</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Uzaktan İzleme</li>
+        </ul>
+        <div class="srow__cta">
+          <a href="#" class="btn btn--accent">Teklif Al <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="https://wa.me/908500000000" class="btn btn--ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.8 4.9-1.3A9.9 9.9 0 1 0 12.05 2Zm0 18a8 8 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12.05 20Z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Otomatik Kapı -->
+    <div class="srow srow--gate reveal" id="otomatik-kapi">
+      <div class="srow__media">
+        <img src="1.png" alt="Otomatik Kapı Sistemleri" style="width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to right, #fff 0%, rgba(255,255,255,0.7) 15%, transparent 45%);pointer-events:none;"></div>
+      </div>
+      <div class="srow__content">
+        <span class="eyebrow eyebrow--gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 8V5h18v3M7 8v12M11 8v12M15 8v12"/></svg> Otomatik Kapı &amp; Bariyer</span>
+        <h2>Güvenli ve konforlu geçiş çözümleri</h2>
+        <p>Konut, site ve endüstriyel tesisler için dayanıklı otomatik kapı ve bariyer sistemleri. Keşiften devreye almaya kadar anahtar teslim kurulum.</p>
+        <ul class="srow__feats">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Kayar Kapı</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Kollu Bariyer</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Seksiyonel Kapı</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Otomatik Cam Kapı</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Kepenk &amp; Panjur</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Mantar Bariyer</li>
+        </ul>
+        <div class="srow__cta">
+          <a href="#" class="btn btn--accent">Teklif Al <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="https://wa.me/908500000000" class="btn btn--ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.8 4.9-1.3A9.9 9.9 0 1 0 12.05 2Zm0 18a8 8 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12.05 20Z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 3) UYGULAMA ALANLARI ================= -->
+<section class="sec areas">
+  <div class="container">
+    <div class="areas__head reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7 12 3l10 4-10 4z"/><path d="M2 7v10l10 4 10-4V7"/></svg> Uygulama Alanları</span>
+      <h2 class="sec-title">Her mekâna <em>özel</em> çözümler</h2>
+      <p>Konuttan endüstriyel tesise kadar farklı ölçeklerde, ihtiyaca göre projelendirilmiş sistemler kuruyoruz.</p>
+    </div>
+
+    <div class="areas__grid">
+      <div class="area reveal">
+        <div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg></div>
+        <div><h3>Konut &amp; Villa</h3><p>Akıllı ev, kamera ve otomatik bahçe kapısı çözümleri.</p></div>
+      </div>
+      <div class="area reveal">
+        <div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="18"/><rect x="13" y="8" width="8" height="13"/><path d="M6 7h2M6 11h2M6 15h2M16 12h2M16 16h2"/></svg></div>
+        <div><h3>Site &amp; Rezidans</h3><p>Geçiş kontrol, bariyer ve ortak alan güvenliği.</p></div>
+      </div>
+      <div class="area reveal">
+        <div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V9l6-3v3l6-3v14M8 12h.01M8 16h.01M13 12h.01M13 16h.01"/></svg></div>
+        <div><h3>Fabrika &amp; Endüstri</h3><p>Endüstriyel kapı, mantar bariyer ve çevre güvenliği.</p></div>
+      </div>
+      <div class="area reveal">
+        <div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4M8 6h2M14 6h2M8 10h2M14 10h2M8 14h2M14 14h2"/></svg></div>
+        <div><h3>Ofis &amp; Plaza</h3><p>Kartlı geçiş, alarm ve akıllı toplantı alanları.</p></div>
+      </div>
+      <div class="area reveal">
+        <div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l1-5h16l1 5M4 9v11h16V9M4 9h16M9 20v-6h6v6"/></svg></div>
+        <div><h3>Mağaza &amp; AVM</h3><p>Otomatik cam kapı, kepenk ve müşteri sayım sistemleri.</p></div>
+      </div>
+      <div class="area reveal">
+        <div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M9 12h.01M15 12h.01"/></svg></div>
+        <div><h3>Kamu &amp; Kurumsal</h3><p>Yüksek güvenlikli geçiş, izleme ve entegrasyon.</p></div>
+      </div>
+    </div>
+
+    <div class="areas__cta reveal">
+      <div>
+        <h3>Aradığınız çözüm listede yok mu?</h3>
+        <p>İhtiyacınız özel olabilir. Ücretsiz keşifle size en uygun sistemi birlikte belirleyelim.</p>
+      </div>
+      <div class="areas__cta-btns">
+        <a href="#" class="btn btn--accent">Ücretsiz Keşif Al <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:+908500000000" class="btn btn--light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg> Bizi Arayın</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el,i){ el.style.transitionDelay=(Math.min(i%3,2)*70)+'ms'; io.observe(el); });
+
+  /* live clock flavor in security panel live label */
+})();
+</script>
+</body>
+</html>

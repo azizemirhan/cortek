@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cortek · Anasayfa Bölümleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== SHARED TOKENS ===== */
+:root{
+  --white:#ffffff;--surface:#F1F5F9;--surface-2:#E9EEF5;
+  --ink:#1E293B;--ink-2:#334155;--muted:#64748B;
+  --blue:#2860d9;--blue-700:#1e4fb8;--blue-050:#eaf0fd;
+  --accent:#FF5A00;--accent-700:#e04e00;
+  --line:rgba(30,41,59,.10);--line-2:rgba(30,41,59,.06);
+  --maxw:1240px;
+  --font-display:'Sora',system-ui,sans-serif;--font-body:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-body);color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.55}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+ul{list-style:none;margin:0;padding:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
+.container{width:100%;max-width:var(--maxw);margin-left: auto; margin-right: auto;padding-inline:24px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;padding:14px 22px;border-radius:12px;line-height:1;transition:transform .18s,background .18s,box-shadow .18s,color .18s}
+.btn svg{width:18px;height:18px}
+.btn--accent{background:var(--accent);color:#fff;box-shadow:0 12px 24px -10px rgba(255,90,0,.6)}
+.btn--accent:hover{background:var(--accent-700);transform:translateY(-1px)}
+.btn--ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn--ghost:hover{background:var(--surface);transform:translateY(-1px)}
+.btn--blue{background:var(--blue);color:#fff;box-shadow:0 12px 24px -10px rgba(40,96,217,.55)}
+.btn--blue:hover{background:var(--blue-700);transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* section rhythm + shared header */
+.sec{padding:clamp(64px,8vw,104px) 0}
+.sec-head{max-width:720px;margin:0 auto clamp(40px,5vw,60px)}
+.sec-head.center{text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--blue-050);padding:8px 14px;border-radius:30px;margin-bottom:18px}
+.eyebrow svg{width:16px;height:16px}
+.sec-title{font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;line-height:1.1;font-size:clamp(28px,3.8vw,44px);margin:0 0 16px;color:var(--ink)}
+.sec-title em{font-style:normal;color:var(--blue)}
+.sec-lead{font-size:17.5px;color:var(--muted);margin:0}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* =========================================================
+   1) HİZMETLER
+========================================================= */
+.services{background:#fff}
+.services__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.scard{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 30px 28px;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.scard::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.scard--home::before{background:var(--blue)}
+.scard--sec::before{background:var(--accent)}
+.scard--gate::before{background:var(--ink)}
+.scard:hover{transform:translateY(-6px);box-shadow:0 34px 60px -30px rgba(30,41,59,.35);border-color:transparent}
+.scard:hover::before{transform:scaleX(1)}
+.scard__ico{width:62px;height:62px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;transition:transform .3s}
+.scard:hover .scard__ico{transform:scale(1.06) rotate(-3deg)}
+.scard__ico svg{width:30px;height:30px}
+.scard--home .scard__ico{background:var(--blue-050);color:var(--blue)}
+.scard--sec .scard__ico{background:#fff1e8;color:var(--accent)}
+.scard--gate .scard__ico{background:var(--surface-2);color:var(--ink)}
+.scard h3{font-family:var(--font-display);font-weight:700;font-size:21px;letter-spacing:-.01em;margin:0 0 10px;color:var(--ink)}
+.scard p{font-size:15px;color:var(--muted);margin:0 0 20px;min-height:44px}
+.scard__list li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500;color:var(--ink-2);padding:7px 0;border-top:1px solid var(--line-2)}
+.scard__list li svg{width:16px;height:16px;color:var(--blue);flex:0 0 auto}
+.scard--sec .scard__list li svg{color:var(--accent)}
+.scard--gate .scard__list li svg{color:var(--ink)}
+.scard__link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:var(--font-display);font-weight:600;font-size:14.5px;color:var(--ink)}
+.scard__link svg{width:17px;height:17px;transition:transform .25s}
+.scard:hover .scard__link{color:var(--blue)}
+.scard--sec:hover .scard__link{color:var(--accent)}
+.scard:hover .scard__link svg{transform:translateX(4px)}
+
+/* =========================================================
+   2) NEDEN CORTEK
+========================================================= */
+.why{background:var(--surface)}
+.why__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.why__media{position:relative; align-self: end; margin-bottom: -100px; z-index: 2;}
+.why__media img{max-width:100%;height:auto;display:block;margin:0 auto;}
+.why__media::after{
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -2px;
+  width: 45%;
+  background: linear-gradient(to right, var(--surface) 0%, transparent 100%);
+  pointer-events: none;
+}
+.why__badge{position:absolute;z-index:3;left:22px;bottom:22px;right:22px;display:flex;gap:14px;flex-wrap:wrap}
+.why__stat{flex:1;min-width:120px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:14px;padding:14px 16px;box-shadow:0 12px 30px -12px rgba(0,0,0,.4)}
+.why__stat b{display:block;font-family:var(--font-display);font-weight:800;font-size:28px;line-height:1;color:var(--ink)}
+.why__stat b i{font-style:normal;color:var(--accent)}
+.why__stat span{font-size:12.5px;color:var(--muted)}
+.why__feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0 28px}
+.feat{background:#fff;border:1px solid var(--line-2);border-radius:16px;padding:20px;transition:transform .25s,box-shadow .25s}
+.feat:hover{transform:translateY(-4px);box-shadow:0 24px 44px -26px rgba(30,41,59,.35)}
+.feat__ico{width:44px;height:44px;border-radius:12px;background:var(--blue-050);color:var(--blue);display:grid;place-items:center;margin-bottom:14px}
+.feat__ico svg{width:22px;height:22px}
+.feat:nth-child(even) .feat__ico{background:#fff1e8;color:var(--accent)}
+.feat h4{font-family:var(--font-display);font-weight:700;font-size:16px;margin:0 0 6px;color:var(--ink)}
+.feat p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+
+/* =========================================================
+   3) ÇALIŞMA SÜRECİ
+========================================================= */
+.process{background:#fff}
+.timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:14px}
+.timeline::before{content:"";position:absolute;top:34px;left:8%;right:8%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px)}
+.step{position:relative;text-align:center;padding:0 6px}
+.step__node{position:relative;z-index:2;width:70px;height:70px;margin:0 auto 20px;border-radius:20px;background:#fff;
+  border:2px solid var(--line);display:grid;place-items:center;color:var(--ink);transition:transform .3s,border-color .3s,background .3s,color .3s}
+.step__node svg{width:30px;height:30px}
+.step__num{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;
+  font-family:var(--font-display);font-weight:700;font-size:12px;display:grid;place-items:center}
+.step:hover .step__node{transform:translateY(-4px);border-color:var(--blue);background:var(--blue);color:#fff}
+.step:nth-child(4):hover .step__node{border-color:var(--accent);background:var(--accent)}
+.step:nth-child(4) .step__num{background:var(--accent)}
+.step h4{font-family:var(--font-display);font-weight:700;font-size:18px;margin:0 0 8px;color:var(--ink)}
+.step p{font-size:14px;color:var(--muted);margin:0;max-width:24ch;margin-left: auto; margin-right: auto}
+.process__cta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:clamp(44px,5vw,60px);
+  background:var(--surface);border-radius:20px;padding:28px 32px;text-align:center}
+.process__cta p{margin:0;font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--ink)}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width:900px){
+  .services__grid{grid-template-columns:1fr;max-width:520px;margin-left: auto; margin-right: auto; width:100%}
+  .why__grid{grid-template-columns:1fr;gap:36px}
+  .why__media{order:2}
+  .timeline{grid-template-columns:1fr;gap:0;margin-top:8px}
+  .timeline::before{top:0;bottom:0;left:34px;right:auto;width:2px;height:auto;
+    background:repeating-linear-gradient(180deg,var(--line) 0 8px,transparent 8px 16px)}
+  .step{display:grid;grid-template-columns:70px 1fr;gap:20px;text-align:left;padding:0 0 32px}
+  .step__node{margin:0}
+  .step p{margin-inline:0;max-width:none}
+  .step h4{margin-top:14px}
+}
+@media (max-width:560px){
+  .container{padding-inline:18px}
+  .why__feats{grid-template-columns:1fr}
+  .process__cta{flex-direction:column}
+  .process__cta .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 1) HİZMETLER ================= -->
+<section class="sec services" id="hizmetler">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg> Hizmetlerimiz</span>
+      <h2 class="sec-title">Tek çatı altında <em>uçtan uca</em> çözümler</h2>
+      <p class="sec-lead">Satıştan projelendirmeye, montajdan teknik desteğe kadar üç ana alanda anahtar teslim hizmet sunuyoruz.</p>
+    </div>
+
+    <div class="services__grid">
+      <!-- Akıllı Ev -->
+      <article class="scard scard--home reveal">
+        <div class="scard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 14a3.5 3.5 0 0 1 5 0"/><path d="M12 17h.01"/></svg></div>
+        <h3>Akıllı Ev Sistemleri</h3>
+        <p>Konfor, enerji verimliliği ve otomasyonu tek uygulamada birleştirin.</p>
+        <ul class="scard__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Akıllı Aydınlatma</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Perde &amp; Panjur Otomasyonu</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> İklimlendirme Kontrolü</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Senaryo &amp; Sesli Asistan</li>
+        </ul>
+        <a href="#" class="scard__link">Detaylı Bilgi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <!-- Güvenlik -->
+      <article class="scard scard--sec reveal">
+        <div class="scard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6z"/><path d="m9.5 12 1.8 1.8L15 10"/></svg></div>
+        <h3>Güvenlik Sistemleri</h3>
+        <p>Ev ve iş yerinizi 7/24 izleyin; anlık bildirim ve uzaktan erişim.</p>
+        <ul class="scard__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Güvenlik Kameraları (CCTV)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Alarm Sistemleri</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Görüntülü Diafon</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Geçiş Kontrol Sistemleri</li>
+        </ul>
+        <a href="#" class="scard__link">Detaylı Bilgi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <!-- Otomatik Kapı -->
+      <article class="scard scard--gate reveal">
+        <div class="scard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 8V5h18v3M7 8v12M11 8v12M15 8v12M19 8v12"/></svg></div>
+        <h3>Otomatik Kapı &amp; Bariyer</h3>
+        <p>Konut ve endüstri için güvenli, dayanıklı geçiş sistemleri.</p>
+        <ul class="scard__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Bahçe Kayar Kapı</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Kollu &amp; Mantar Bariyer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Endüstriyel Seksiyonel Kapı</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Kepenk &amp; Panjur</li>
+        </ul>
+        <a href="#" class="scard__link">Detaylı Bilgi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2) NEDEN CORTEK ================= -->
+<section class="sec why" id="neden-cortek">
+  <div class="container">
+    <div class="why__grid">
+      <!-- media -->
+      <div class="why__media reveal">
+        <img src="Kamera.png" alt="Cortek Kamera Sistemleri" />
+        <div class="why__badge">
+          <div class="why__stat"><b>10<i>+</i></b><span>Yıl saha tecrübesi</span></div>
+          <div class="why__stat"><b>500<i>+</i></b><span>Tamamlanan proje</span></div>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:26px">
+          <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6z"/></svg> Neden Cortek?</span>
+          <h2 class="sec-title">Güvenilir işçilik, <em>kesintisiz</em> destek</h2>
+          <p class="sec-lead">Satış, montaj ve kurulumu tek elden yürütüyoruz. Projeniz baştan sona aynı uzman ekibin sorumluluğunda.</p>
+        </div>
+
+        <div class="why__feats">
+          <div class="feat">
+            <div class="feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 7 12 3 4 7v6c0 5 8 8 8 8s8-3 8-8V7Z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h4>Tek Elden Çözüm</h4>
+            <p>Satıştan devreye almaya kadar aynı ekip.</p>
+          </div>
+          <div class="feat">
+            <div class="feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h4>Garantili Montaj</h4>
+            <p>2 yıl işçilik güvencesi ve fatura.</p>
+          </div>
+          <div class="feat">
+            <div class="feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg></div>
+            <h4>Sertifikalı Ekip</h4>
+            <p>Alanında uzman, eğitimli teknisyenler.</p>
+          </div>
+          <div class="feat">
+            <div class="feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h4>7/24 Teknik Destek</h4>
+            <p>Kurulum sonrası kesintisiz servis.</p>
+          </div>
+          <div class="feat">
+            <div class="feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20.6 3.4a2 2 0 0 0-2.8 0L7 14.2 3 21l6.8-4 10.8-10.8a2 2 0 0 0 0-2.8Z"/></svg></div>
+            <h4>Orijinal Ürünler</h4>
+            <p>Yetkili bayi, markalı ve garantili donanım.</p>
+          </div>
+          <div class="feat">
+            <div class="feat__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h4>Ücretsiz Keşif</h4>
+            <p>Adresinize gelir, çözümü yerinde planlarız.</p>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn--accent">Ücretsiz Keşif Al
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3) ÇALIŞMA SÜRECİ ================= -->
+<section class="sec process" id="surec">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Nasıl Çalışıyoruz?</span>
+      <h2 class="sec-title">Keşiften desteğe <em>4 net adım</em></h2>
+      <p class="sec-lead">Sürprizsiz, şeffaf bir süreç. Her aşamada ne olacağını önceden bilirsiniz.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="step reveal">
+        <div class="step__node"><span class="step__num">01</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <div><h4>Keşif &amp; Analiz</h4><p>Adresinize gelir, ihtiyacınızı yerinde belirleriz.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="step__node"><span class="step__num">02</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></div>
+        <div><h4>Teklif &amp; Planlama</h4><p>Net fiyat ve çözüm planını şeffafça sunarız.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="step__node"><span class="step__num">03</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2 2.7-2.7Z"/></svg></div>
+        <div><h4>Montaj &amp; Kurulum</h4><p>Uzman ekip profesyonel kurulumu tamamlar.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="step__node"><span class="step__num">04</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6z"/><path d="m9.5 12 1.8 1.8L15 10"/></svg></div>
+        <div><h4>Teslim &amp; Destek</h4><p>Sistemi devreye alır, 7/24 destek sağlarız.</p></div>
+      </div>
+    </div>
+
+    <div class="process__cta reveal">
+      <p>Projeniz için ilk adımı atmaya hazır mısınız?</p>
+      <a href="#" class="btn btn--accent">Hemen Teklif Al
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="tel:+908500000000" class="btn btn--ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        Bizi Arayın
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay = (Math.min(i%4,3)*70)+'ms';
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

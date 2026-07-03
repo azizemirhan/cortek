@@ -1,0 +1,8 @@
+# Cloudflare Workers - Static assets deployment for cortek
+
+name = "cortek"
+compatibility_date = "2026-02-10"
+
+# Static site - tüm HTML, CSS, assets dist klasöründe
+[assets]
+directory = "./"
